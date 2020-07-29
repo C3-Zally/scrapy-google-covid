@@ -43,8 +43,13 @@ class SpiderGoogle(scrapy.Spider):
         table_header = self.get_table_header(response)
         table_location = self.get_table_location(response)
         table_data = self.get_table_data(response)
-        filter_data = self.filter_data(table_header, table_location, table_data)
-        return filter_data
+        # filter_data = self.filter_data(table_header, table_location, table_data)
+        # return filter_data
+        return {
+            'tempData': {
+                'header': table_header, 'location': table_location,'data':  table_data
+            }
+        }
 
 
     # Header
