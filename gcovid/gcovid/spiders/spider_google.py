@@ -43,13 +43,29 @@ class SpiderGoogle(scrapy.Spider):
         table_header = self.get_table_header(response)
         table_location = self.get_table_location(response)
         table_data = self.get_table_data(response)
-        # filter_data = self.filter_data(table_header, table_location, table_data)
-        # return filter_data
-        return {
-            'tempData': {
-                'header': table_header, 'location': table_location,'data':  table_data
-            }
-        }
+        filter_data = self.filter_data(table_header, table_location, table_data)
+        return filter_data
+        # return {
+        #     'tempData': {
+        #         'header': table_header, 'location': table_location,'data':  table_data
+        #     }
+        # }
+
+
+    def filter_data(self, table_header, table_location, table_data):
+        del table_header[2] # Remove Image Col
+        new_table_data = self.split_list(table_data, 6)
+        data_table_complement = list()
+        for item in new_table_data:
+            data = {}
+            for value_one, value_two in zip(table_header, item):
+                data.update({value_one: value_two})
+            data_table_complement.append(data)
+            # data_table_complement.append(({value_one: value_two}) for value_one, value_two in zip(header, new_table_data))
+        response = {}
+        for value_one, value_two in zip(table_location, data_table_complement):
+            response.update({value_one: value_two})
+        return response
 
 
     # Header
@@ -88,5 +104,9 @@ class SpiderGoogle(scrapy.Spider):
         return response.xpath('//table[@class="pH8O4c"]//tr//td//text()').getall()
 
 
+    # Complements and Functions
+    def split_list(self, alist, wanted_parts=1):
+        length = len(alist)
+        return [ alist[i*length // wanted_parts: (i+1)*length // wanted_parts] 
+                for i in range(wanted_parts) ]
 
-    # 
