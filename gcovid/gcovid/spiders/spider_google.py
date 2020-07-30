@@ -106,8 +106,16 @@ class SpiderGoogle(scrapy.Spider):
 
 
     # Complements and Functions
-    def split_list(self, alist, wanted_parts=1):
-        length = len(alist)
-        return [ alist[i*length // wanted_parts: (i+1)*length // wanted_parts] 
-                for i in range(wanted_parts) ]
+    def split_list(self, arr, size):
+        # length = len(alist)
+        # return [ alist[i*length // wanted_parts: (i+1)*length // wanted_parts] 
+        #         for i in range(wanted_parts) ]
+        arrs = []
+        while len(arr) > size:
+            pice = arr[:size]
+            arrs.append(pice)
+            arr   = arr[size:]
+        arrs.append(arr)
+        return arrs
+
 
