@@ -53,8 +53,9 @@ class SpiderGoogle(scrapy.Spider):
 
 
     def filter_data(self, table_header, table_location, table_data):
+        del table_header[0] # Remove Name Country
         del table_header[2] # Remove Image Col
-        new_table_data = self.split_list(table_data, 6)
+        new_table_data = self.split_list(table_data, 4)
         data_table_complement = list()
         for item in new_table_data:
             data = {}
