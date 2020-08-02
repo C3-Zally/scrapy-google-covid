@@ -63,7 +63,8 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    'gcovid.pipelines.GcovidPipeline': 300,
+    # 'gcovid.pipelines.GcovidPipeline': 300,
+    # 'gcovid.pipelines.JsonWriterPipeline': 800,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
