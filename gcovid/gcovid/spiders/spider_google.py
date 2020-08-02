@@ -1,6 +1,6 @@
 import json
 import urllib
-import stringcase
+# import stringcase
 
 import scrapy
 
@@ -56,8 +56,9 @@ class SpiderGoogle(scrapy.Spider):
         for item in table_header:
             if item == 'New cases (last 60 days)':
                 item = 'new_cases'
-            camel_case = stringcase.camelcase(item)
-            headers.append(camel_case)
+            # camel_case = stringcase.camelcase(item)
+            new_item = self.camel_case(item)
+            headers.append(new_item)
 
         # table_data = [(lambda value: self.convert_int(value) if value != 'No data' else 0) for value in table_data]
         table_data = [(self.convert_int(value) if value != 'No data' else 0) for value in table_data]
