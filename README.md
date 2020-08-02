@@ -81,6 +81,8 @@ API key: dd7c837f14c947c7a39ce7baae339bcd
 $ shub deploy 466670
 ```
 
+After that, the result of this deploy is the next: https://app.scrapinghub.com/datasets/9LXtIZDg6JE
+
 ## Construido con 🛠️
 
 * [VSCode](https://code.visualstudio.com/) - Code editor
