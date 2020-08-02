@@ -19,15 +19,15 @@ pip3
 
 In the branch `mt-scrapy`, Install the requirements:
 
+Execute the env and install the requirements.
 ```
 python3 -m venv venv
+source venv/bin/activate
 pip3 install -r requirements.txt
 ```
 
-Execute the env, open the folder `gcovid` and run the scrapy
-
+Open the folder `gcovid` and run the scrapy
 ```
-source venv/bin/activate
 cd gcovid
 rm dist/response.json | scrapy crawl spider_google
 ```
